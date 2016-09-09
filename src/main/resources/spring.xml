@@ -5,6 +5,7 @@
                 http://www.springframework.org/schema/beans
                 http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 
+    <import resource="loggers.xml"/>
     <bean id="client" class="beans.Client">
         <constructor-arg value="1" type="java.lang.Integer"/>
         <constructor-arg value="John Smith" type="java.lang.String"/>
@@ -23,16 +24,5 @@
         <constructor-arg ref="dateFormat"/>
     </bean>
     <bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
-
-    <!-- LOGGERS START -->
-    <bean id="consoleEventLogger" class="loggers.ConsoleEventLogger"/>
-    <bean id="fileEventLogger" init-method="init" class="loggers.FileEventLogger">
-        <constructor-arg value="d:\FileEventLogger.log" type="java.lang.String"/>
-    </bean>
-    <bean id="cacheFileEventLogger" init-method="init" destroy-method="destroy" class="loggers.CacheFileEventLogger">
-        <constructor-arg value="d:\FileEventLogger.log" type="java.lang.String"/>
-        <constructor-arg value="2" type="java.lang.Integer"/>
-    </bean>
-    <!-- LOGGERS END -->
 </beans>
 
