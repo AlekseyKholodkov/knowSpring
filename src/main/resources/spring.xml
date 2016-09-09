@@ -9,10 +9,12 @@
         <constructor-arg value="1" type="java.lang.Integer"/>
         <constructor-arg value="John Smith" type="java.lang.String"/>
     </bean>
-    <bean id="eventLogger" class="loggers.ConsoleEventLogger"/>
+
     <bean id="app" class="App">
         <constructor-arg ref="client"/>
-        <constructor-arg ref="eventLogger"/>
+        <!--<constructor-arg ref="consoleEventLogger"/>-->
+        <!--<constructor-arg ref="fileEventLogger"/>-->
+        <constructor-arg ref="cacheFileEventLogger"/>
     </bean>
     <bean id="event" class="events.Event" scope="prototype">
         <constructor-arg>
@@ -22,5 +24,15 @@
     </bean>
     <bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
 
+    <!-- LOGGERS START -->
+    <bean id="consoleEventLogger" class="loggers.ConsoleEventLogger"/>
+    <bean id="fileEventLogger" init-method="init" class="loggers.FileEventLogger">
+        <constructor-arg value="d:\FileEventLogger.log" type="java.lang.String"/>
+    </bean>
+    <bean id="cacheFileEventLogger" init-method="init" destroy-method="destroy" class="loggers.CacheFileEventLogger">
+        <constructor-arg value="d:\FileEventLogger.log" type="java.lang.String"/>
+        <constructor-arg value="2" type="java.lang.Integer"/>
+    </bean>
+    <!-- LOGGERS END -->
 </beans>
 
