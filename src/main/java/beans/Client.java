@@ -1,20 +1,22 @@
+package beans;
+
 public class Client {
-    private String id;
+    private int id;
     private String fullName;
 
     public Client() {
     }
 
-    public Client(String id, String fullName) {
+    public Client(Integer id, String fullName) {
         this.id = id;
         this.fullName = fullName;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
